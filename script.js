@@ -18,6 +18,30 @@ function isValidEmail(email){
     return re.test(String(email).toLowerCase());
 }
 
+//Check required
+function checkRequired(inputArr){
+inputArr.forEach(function(input){
+if(input.value.trim() === ''){
+    showError(input, `${getFieldNanme(input)} is required`);
+}else{
+    showSuccess(input)
+}
+});
+}
+
+//Getfieldname
+function getFieldNanme(input){
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+//Event listeners
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    
+    checkRequired([username, email, password, password2])
+});
+
+/*
 //Show successoutline
 function showSuccess(input){
     const formControl = input.parentElement;
@@ -53,4 +77,4 @@ form.addEventListener('submit', function(e){
       }else{
           showSuccess(password2);
       }
-})
+})*/
